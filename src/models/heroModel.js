@@ -18,4 +18,13 @@ const getHero = async (id) => {
     return result.rows[0];
 };
 
-module.exports = {getHeroes, getHero};
+const createHero = async (name, photo) => { 
+    const result = await pool.query(
+        "INSERT INTO heroes (name, photo) VALUES ($1, $2) RETURNING *",
+        [name, photo]
+    );
+    return result.rows[0];
+}
+
+
+module.exports = {getHeroes, getHero, createHero};

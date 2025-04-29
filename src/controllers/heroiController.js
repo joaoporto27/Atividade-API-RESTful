@@ -18,4 +18,15 @@ const getHero = async (req,res) => {
     }
 };
 
-module.exports = {getAllHeroes, getHero};
+const createHero = async (req,res) => {
+    try {
+        const { name } = req.body;
+        const photo = req.file ? req.file.filename : null;
+        const newHero = await heroModel.createHero(name, photo);
+        res.status(201).json(newHero);
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao criar usuário." });
+    }
+};
+
+module.exports = {getAllHeroes, getHero, createHero};
