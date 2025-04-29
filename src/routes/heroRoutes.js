@@ -6,5 +6,6 @@ const apiKeyMiddleware = require("../config/apiKey")
 router.use(apiKeyMiddleware)
 
 router.get("/", heroController.getAllHeroes);
+router.get("/:id", heroController.getHero);
 
 module.exports = router;

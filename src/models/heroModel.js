@@ -13,4 +13,9 @@ const getHeroes = async (hero) => {
    }
 };
 
-module.exports = {getHeroes};
+const getHero = async (id) => {
+    const result = await pool.query("SELECT * FROM heroes WHERE id = $1", [id]);
+    return result.rows[0];
+};
+
+module.exports = {getHeroes, getHero};
