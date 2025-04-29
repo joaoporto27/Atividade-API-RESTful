@@ -8,5 +8,6 @@ router.use(apiKeyMiddleware);
 router.get("/", heroController.getAllHeroes);
 router.get("/:id", heroController.getHero);
 router.post("/", heroController.createHero);
+router.put("/:id", heroController.updateHero)
 
 module.exports = router;

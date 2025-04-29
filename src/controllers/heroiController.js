@@ -25,8 +25,22 @@ const createHero = async (req,res) => {
         const newHero = await heroModel.createHero(name, photo);
         res.status(201).json(newHero);
     } catch (error) {
-        res.status(500).json({ message: "Erro ao criar usuário." });
+        res.status(500).json({ message: "Erro ao criar herói." });
     }
 };
 
-module.exports = {getAllHeroes, getHero, createHero};
+const updateHero = async (req, res) => {
+    try {
+        const { name } = req.body;
+        const photo = req.file ? req.file.filename : null;
+        const updatedHero = await heroModel.updateHero(req.params.id, name, photo);
+        if (!updatedHero) {
+            return res.status(404).json({ message: "Herói não encontrado." });
+        }
+        res.json(updatedHero);
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao atualizar herói." });
+    }
+};
+
+module.exports = {getAllHeroes, getHero, createHero, updateHero};

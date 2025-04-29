@@ -26,5 +26,13 @@ const createHero = async (name, photo) => {
     return result.rows[0];
 }
 
+const updateHero = async (id, name, photo) => {
+    const result = await pool.query(
+        "UPDATE heroes SET name = $1, photo = $2 WHERE id = $3 RETURNING *",
+        [name, photo, id]
+    );
+    return result.rows[0];
+}
 
-module.exports = {getHeroes, getHero, createHero};
+
+module.exports = {getHeroes, getHero, createHero, updateHero};
