@@ -4,7 +4,7 @@ CREATE DATABASE herois;
 
 CREATE TABLE heroes (
     id SERIAL PRIMARY KEY,
-    hero VARCHAR(100) NOT NULL,
+    name VARCHAR(100) NOT NULL,
     photo TEXT
 );
 
